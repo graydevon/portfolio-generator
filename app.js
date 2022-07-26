@@ -1,0 +1,1 @@
+const generatePage = require('./project/src/page-template.js');
