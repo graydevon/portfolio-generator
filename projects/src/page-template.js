@@ -1,13 +1,13 @@
-const fs = require('fs');
+module.exports = templateData => {
+  console.log(templateData);
 
-const profileDataArgs = process.argv.slice(2);
+  // destructure projects and about data from templateData based on their property key names
+const { projects, about } = templateData;
 
-const [name, github] = profileDataArgs;
-
-const generatePage = (name, github) => {
   return `
-  <!DOCTYPE html> 
-  <html lang="en"> 
+  <!DOCTYPE html>
+  <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +16,9 @@ const generatePage = (name, github) => {
   </head>
 
   <body>
-    <h1>${name}</h1>
-    <h2><a href="https://github.com/${github}">Github</a></h2>
+    <h1>${templateData.name}</h1>
+    <h2><a href="https://github.com/${templateData.github}">Github</a></h2>
   </body>
   </html>
   `;
 };
-
-fs.writeFile('./index.html', generatePage(name, github), err => {
-  if (err) throw new Error(err);
-
-  console.log('Portfolio complete! Check out index.html to see the output!');
-});
-
-module.exsports = generatePage; 
